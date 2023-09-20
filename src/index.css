@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  :root {
+    --square-size: 15px;
+    --square-gap: 5px;
+    --week-width: calc(var(--square-size) + var(--square-gap));
+  }
+
+  .grid-template-months {
+    grid-template-columns:
+      calc(var(--week-width) * 4) /* Jan */
+      calc(var(--week-width) * 4) /* Feb */
+      calc(var(--week-width) * 4) /* Mar */
+      calc(var(--week-width) * 5) /* Apr */
+      calc(var(--week-width) * 4) /* May */
+      calc(var(--week-width) * 4) /* Jun */
+      calc(var(--week-width) * 5) /* Jul */
+      calc(var(--week-width) * 4) /* Aug */
+      calc(var(--week-width) * 4) /* Sep */
+      calc(var(--week-width) * 5) /* Oct */
+      calc(var(--week-width) * 4) /* Nov */
+      calc(var(--week-width) * 5) /* Dec */;
+  }
+}

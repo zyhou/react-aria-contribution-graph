@@ -7,6 +7,8 @@ import {
   getLocalTimeZone,
 } from "@internationalized/date";
 
+import { CalendarGrid } from "./CalendarGrid";
+
 export function Calendar() {
   const { locale } = useLocale();
   const state = useCalendarState({
@@ -17,11 +19,11 @@ export function Calendar() {
     minValue: startOfYear(today(getLocalTimeZone())),
   });
 
-  const { calendarProps, title } = useCalendar({}, state);
+  const { calendarProps } = useCalendar({}, state);
 
   return (
     <div {...calendarProps} className="inline-block text-gray-800">
-      <h3>{title}</h3>
+      <CalendarGrid state={state} />
     </div>
   );
 }
