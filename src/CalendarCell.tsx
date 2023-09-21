@@ -2,7 +2,7 @@ import { CSSProperties, useRef } from "react";
 import { useCalendarCell, useDateFormatter } from "react-aria";
 import { CalendarDate } from "@internationalized/date";
 import { CalendarState } from "react-stately";
-import { colorByLevel } from "./types";
+import "./CalendarCell.css";
 
 export function CalendarCell({
   state,
@@ -22,8 +22,6 @@ export function CalendarCell({
     timeZone: state.timeZone,
   });
 
-  const color = colorByLevel[level];
-
   return (
     <li {...cellProps} className="flex items-center justify-center group">
       <div
@@ -35,8 +33,7 @@ export function CalendarCell({
             "--activity": activity,
           } as CSSProperties
         }
-        //  w-[--square-size] h-[--square-size] pour carré
-        className={`${color} relative rounded-full circle`}
+        className={`relative cell level${level}`}
       >
         <div className="absolute bottom-0 flex-col items-center hidden mb-6 w-max group-hover:flex">
           <span className="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg">

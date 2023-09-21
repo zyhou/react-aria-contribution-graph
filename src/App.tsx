@@ -15,7 +15,12 @@ export default function App() {
         </h1>
       </nav>
       <section className="grid place-items-center">
-        <Calendar activities={activities} />
+        <div className="calandar-square">
+          <Calendar activities={activities} />
+        </div>
+        <div className="calandar-circle">
+          <Calendar activities={activities} />
+        </div>
       </section>
     </div>
   );

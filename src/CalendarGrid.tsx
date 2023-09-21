@@ -2,6 +2,7 @@ import { useCalendarGrid, useDateFormatter } from "react-aria";
 import { CalendarState } from "react-stately";
 import { CalendarCell } from "./CalendarCell";
 import { numberOfLevels } from "./types";
+import "./CalendarGrid.css";
 
 export function CalendarGrid({
   state,
@@ -63,7 +64,7 @@ export function CalendarGrid({
           let level = 0;
           if (activity !== 0) {
             const category = Math.floor((activity - min) / interval) + 1;
-            level = category <= numberOfLevels ? category : numberOfLevels;
+            level = category < numberOfLevels ? category : numberOfLevels - 1;
           }
 
           return (

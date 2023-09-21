@@ -8,25 +8,31 @@
     --square-gap: 5px;
     --week-width: calc(var(--square-size) + var(--square-gap));
   }
+}
 
-  .grid-template-months {
-    grid-template-columns:
-      calc(var(--week-width) * 4) /* Jan */
-      calc(var(--week-width) * 4) /* Feb */
-      calc(var(--week-width) * 4) /* Mar */
-      calc(var(--week-width) * 5) /* Apr */
-      calc(var(--week-width) * 4) /* May */
-      calc(var(--week-width) * 4) /* Jun */
-      calc(var(--week-width) * 5) /* Jul */
-      calc(var(--week-width) * 4) /* Aug */
-      calc(var(--week-width) * 4) /* Sep */
-      calc(var(--week-width) * 5) /* Oct */
-      calc(var(--week-width) * 4) /* Nov */
-      calc(var(--week-width) * 5) /* Dec */;
-  }
+.calandar-circle .cell {
+  border-radius: 50%;
+  height: clamp(3px, calc(var(--level) * 5px), var(--square-size));
+  width: clamp(3px, calc(var(--level) * 5px), var(--square-size));
+}
 
-  .circle {
-    height: clamp(5px, calc(var(--activity) * 2px), var(--square-size));
-    width: clamp(5px, calc(var(--activity) * 2px), var(--square-size));
-  }
+.calandar-circle .cell.level0 {
+  background-color: theme(colors.gray.200);
+}
+
+.calandar-circle .cell.level1 {
+  background-color: theme(colors.amber.100);
+}
+
+.calandar-circle .cell.level2 {
+  background-color: theme(colors.amber.200);
+}
+
+.calandar-circle .cell.level3 {
+  background-color: theme(colors.amber.400);
+}
+
+.calandar-square .cell {
+  height: var(--square-size);
+  width: var(--square-size);
 }

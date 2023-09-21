@@ -1,0 +1,22 @@
+/* square */
+.cell {
+  height: var(--square-size);
+  width: var(--square-size);
+}
+
+/* GitHub color */
+.level0 {
+  background-color: theme(colors.gray.200);
+}
+
+.level1 {
+  background-color: theme(colors.lime.200);
+}
+
+.level2 {
+  background-color: theme(colors.green.400);
+}
+
+.level3 {
+  background-color: theme(colors.green.800);
+}
