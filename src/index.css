@@ -24,4 +24,9 @@
       calc(var(--week-width) * 4) /* Nov */
       calc(var(--week-width) * 5) /* Dec */;
   }
+
+  .circle {
+    height: clamp(5px, calc(var(--level) * 2px), var(--square-size));
+    width: clamp(5px, calc(var(--level) * 2px), var(--square-size));
+  }
 }
