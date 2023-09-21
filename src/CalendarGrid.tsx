@@ -4,6 +4,13 @@ import { CalendarCell } from "./CalendarCell";
 import { numberOfLevels } from "./types";
 import "./CalendarGrid.css";
 
+const KEY_MAPPING: {[key: string]: string} = {
+  ArrowLeft: 'ArrowUp',
+  ArrowRight: 'ArrowDown',
+  ArrowUp: 'ArrowLeft',
+  ArrowDown: 'ArrowRight'
+};
+
 export function CalendarGrid({
   state,
   activities,
@@ -35,9 +42,15 @@ export function CalendarGrid({
   const max = Math.max(...activities);
   const interval = (max - min) / (numberOfLevels - 1);
 
+  const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    e.key = KEY_MAPPING[e.key] || e.key;
+    gridProps.onKeyDown!(e);
+  };
+
   return (
     <div
       {...gridProps}
+      onKeyDown={onKeyDown}
       className="p-5 m-5 inline-grid gap-2.5 grid-cols-[auto_1fr] [grid-template-areas:'empty_months'_'days_squares']"
     >
       <ul
@@ -48,7 +61,7 @@ export function CalendarGrid({
           return <li key={month}>{month}</li>;
         })}
       </ul>
-      <ul className="grid [grid-area:days] gap-[--square-gap] [grid-template-rows:repeat(7,_var(--square-size))]">
+      <ul aria-hidden="true" className="grid [grid-area:days] gap-[--square-gap] [grid-template-rows:repeat(7,_var(--square-size))]">
         {weekDays.map((weekDay) => {
           return (
             <li key={weekDay} className="odd:invisible">
@@ -57,7 +70,7 @@ export function CalendarGrid({
           );
         })}
       </ul>
-      <ul className="grid [grid-area:squares] gap-[--square-gap] [grid-template-rows:repeat(7,_var(--square-size))] grid-flow-col auto-cols-[--square-size]">
+      <ul role="row" className="grid [grid-area:squares] gap-[--square-gap] [grid-template-rows:repeat(7,_var(--square-size))] grid-flow-col auto-cols-[--square-size]">
         {activities.map((activity, index) => {
           const currentDate = state.visibleRange.start.add({ days: index });
 
