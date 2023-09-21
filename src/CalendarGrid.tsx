@@ -1,14 +1,14 @@
 import { useCalendarGrid, useDateFormatter } from "react-aria";
 import { CalendarState } from "react-stately";
 import { CalendarCell } from "./CalendarCell";
-import { ActivityLevel } from "./types";
+import { numberOfLevels } from "./types";
 
 export function CalendarGrid({
   state,
   activities,
 }: {
   state: CalendarState;
-  activities: Array<ActivityLevel>;
+  activities: Array<number>;
 }) {
   const { gridProps, headerProps, weekDays } = useCalendarGrid(
     { weekdayStyle: "short" },
@@ -29,6 +29,10 @@ export function CalendarGrid({
     const date = state.focusedDate.set({ month: i });
     months.push(formatter.format(date.toDate(state.timeZone)));
   }
+
+  const min = Math.min(...activities);
+  const max = Math.max(...activities);
+  const interval = (max - min) / (numberOfLevels - 1);
 
   return (
     <div
@@ -53,8 +57,14 @@ export function CalendarGrid({
         })}
       </ul>
       <ul className="grid [grid-area:squares] gap-[--square-gap] [grid-template-rows:repeat(7,_var(--square-size))] grid-flow-col auto-cols-[--square-size]">
-        {activities.map((level, index) => {
+        {activities.map((activity, index) => {
           const currentDate = state.visibleRange.start.add({ days: index });
+
+          let level = 0;
+          if (activity !== 0) {
+            const category = Math.floor((activity - min) / interval) + 1;
+            level = category <= numberOfLevels ? category : numberOfLevels;
+          }
 
           return (
             <CalendarCell
@@ -62,6 +72,7 @@ export function CalendarGrid({
               state={state}
               date={currentDate}
               level={level}
+              activity={activity}
             />
           );
         })}

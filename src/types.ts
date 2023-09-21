@@ -1,8 +1,8 @@
-export const colorByLevel = {
-  0: "bg-gray-200",
-  1: "bg-lime-200",
-  2: "bg-green-400",
-  3: "bg-green-800",
-} as const;
+export const numberOfLevels = 4; // size of cricle / number of color
 
-export type ActivityLevel = keyof typeof colorByLevel;
+export const colorByLevel = [
+  "bg-gray-200", // level 0
+  "bg-lime-200", // level 1
+  "bg-green-400", // ...
+  "bg-green-800",
+];

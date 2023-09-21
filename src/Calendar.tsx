@@ -8,9 +8,8 @@ import {
 } from "@internationalized/date";
 
 import { CalendarGrid } from "./CalendarGrid";
-import { ActivityLevel } from "./types";
 
-export function Calendar({ activities }: { activities: Array<ActivityLevel> }) {
+export function Calendar({ activities }: { activities: Array<number> }) {
   const { locale } = useLocale();
   const state = useCalendarState({
     locale,

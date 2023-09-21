@@ -1,11 +1,10 @@
 import { Calendar } from "./Calendar";
-import { ActivityLevel } from "./types";
 
 // All calendar have the same number of days?
 const activities = [...new Array(364).keys()].map(() => {
-  const level = Math.floor(Math.random() * 4);
+  const level = Math.floor(Math.random() * 100);
   return level;
-}) as Array<ActivityLevel>;
+});
 
 export default function App() {
   return (
