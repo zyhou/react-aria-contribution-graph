@@ -7,7 +7,8 @@ import {
   getLocalTimeZone,
 } from "@internationalized/date";
 
-import { ActivityLevel, CalendarGrid } from "./CalendarGrid";
+import { CalendarGrid } from "./CalendarGrid";
+import { ActivityLevel } from "./types";
 
 export function Calendar({ activities }: { activities: Array<ActivityLevel> }) {
   const { locale } = useLocale();
