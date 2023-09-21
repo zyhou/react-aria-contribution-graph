@@ -30,7 +30,7 @@ export function CalendarCell({
         {...buttonProps}
         ref={ref}
         //  w-[--square-size] h-[--square-size] pour carré
-        className={`${color} relative rounded-full [height:clamp(5px,calc(${level}*4px),15px)] [width:clamp(5px,calc(${level}*4px),15px)]`}
+        className={`${color} relative rounded-full [height:clamp(5px,calc(1*4px),15px)] [width:clamp(5px,calc(1*4px),15px)]`}
       >
         <div className="absolute bottom-0 flex-col items-center hidden mb-6 w-max group-hover:flex">
           <span className="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg">
