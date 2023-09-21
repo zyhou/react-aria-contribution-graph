@@ -1,9 +1,11 @@
 import { useCalendarGrid, useDateFormatter } from "react-aria";
 import { CalendarState } from "react-stately";
-import { today, getLocalTimeZone } from "@internationalized/date";
 
 export function CalendarGrid({ state }: { state: CalendarState }) {
-  const { gridProps, headerProps } = useCalendarGrid({}, state);
+  const { gridProps, headerProps, weekDays } = useCalendarGrid(
+    { weekdayStyle: "short" },
+    state
+  );
 
   const months = [];
   const formatter = useDateFormatter({
@@ -20,19 +22,6 @@ export function CalendarGrid({ state }: { state: CalendarState }) {
     months.push(formatter.format(date.toDate(state.timeZone)));
   }
 
-  const dayFormatter = useDateFormatter({
-    weekday: "short",
-    timeZone: state.timeZone,
-  });
-
-  const days = [...Array(7).keys()].map((day) =>
-    dayFormatter.format(
-      today(getLocalTimeZone())
-        .set({ day: day + 1 })
-        .toDate(getLocalTimeZone())
-    )
-  );
-
   return (
     <div
       {...gridProps}
@@ -47,10 +36,10 @@ export function CalendarGrid({ state }: { state: CalendarState }) {
         })}
       </ul>
       <ul className="grid [grid-area:days]">
-        {days.map((day) => {
+        {weekDays.map((weekDay) => {
           return (
-            <li key={day} className="odd:invisible">
-              {day}
+            <li key={weekDay} className="odd:invisible">
+              {weekDay}
             </li>
           );
         })}
