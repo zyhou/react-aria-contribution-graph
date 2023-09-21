@@ -26,7 +26,7 @@
   }
 
   .circle {
-    height: clamp(5px, calc(var(--level) * 2px), var(--square-size));
-    width: clamp(5px, calc(var(--level) * 2px), var(--square-size));
+    height: clamp(5px, calc(var(--activity) * 2px), var(--square-size));
+    width: clamp(5px, calc(var(--activity) * 2px), var(--square-size));
   }
 }

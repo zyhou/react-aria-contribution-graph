@@ -25,7 +25,7 @@ export function CalendarCell({
   const color = colorByLevel[level];
 
   return (
-    <li {...cellProps} className="group">
+    <li {...cellProps} className="flex items-center justify-center group">
       <div
         {...buttonProps}
         ref={ref}
