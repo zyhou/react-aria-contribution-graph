@@ -12,8 +12,8 @@
 
 .calandar-circle .cell {
   border-radius: 50%;
-  height: clamp(3px, calc(var(--level) * 5px), var(--square-size));
-  width: clamp(3px, calc(var(--level) * 5px), var(--square-size));
+  height: clamp(5px, calc(var(--activity) * 0.2px), var(--square-size));
+  width: clamp(5px, calc(var(--activity) * 0.2px), var(--square-size));
 }
 
 .calandar-circle .cell.level0 {
