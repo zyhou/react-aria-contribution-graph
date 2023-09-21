@@ -7,9 +7,9 @@ import {
   getLocalTimeZone,
 } from "@internationalized/date";
 
-import { CalendarGrid } from "./CalendarGrid";
+import { ActivityLevel, CalendarGrid } from "./CalendarGrid";
 
-export function Calendar() {
+export function Calendar({ activities }: { activities: Array<ActivityLevel> }) {
   const { locale } = useLocale();
   const state = useCalendarState({
     locale,
@@ -23,7 +23,7 @@ export function Calendar() {
 
   return (
     <div {...calendarProps} className="inline-block text-gray-800">
-      <CalendarGrid state={state} />
+      <CalendarGrid state={state} activities={activities} />
     </div>
   );
 }

@@ -1,7 +1,22 @@
 import { useCalendarGrid, useDateFormatter } from "react-aria";
 import { CalendarState } from "react-stately";
 
-export function CalendarGrid({ state }: { state: CalendarState }) {
+const colorByLevel = {
+  0: "bg-gray-200",
+  1: "bg-lime-200",
+  2: "bg-green-400",
+  3: "bg-green-800",
+} as const;
+
+export type ActivityLevel = keyof typeof colorByLevel;
+
+export function CalendarGrid({
+  state,
+  activities,
+}: {
+  state: CalendarState;
+  activities: Array<ActivityLevel>;
+}) {
   const { gridProps, headerProps, weekDays } = useCalendarGrid(
     { weekdayStyle: "short" },
     state
@@ -35,13 +50,20 @@ export function CalendarGrid({ state }: { state: CalendarState }) {
           return <li key={month}>{month}</li>;
         })}
       </ul>
-      <ul className="grid [grid-area:days]">
+      <ul className="grid [grid-area:days] gap-[--square-gap] [grid-template-rows:repeat(7,_var(--square-size))]">
         {weekDays.map((weekDay) => {
           return (
             <li key={weekDay} className="odd:invisible">
               {weekDay}
             </li>
           );
+        })}
+      </ul>
+      <ul className="grid [grid-area:squares] gap-[--square-gap] [grid-template-rows:repeat(7,_var(--square-size))] grid-flow-col auto-cols-[--square-size]">
+        {[...new Array(364).keys()].map((day) => {
+          const level = activities[day];
+          const color = colorByLevel[level];
+          return <li key={day} className={`${color}`}></li>;
         })}
       </ul>
     </div>

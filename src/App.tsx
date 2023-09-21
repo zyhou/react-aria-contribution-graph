@@ -1,4 +1,11 @@
 import { Calendar } from "./Calendar";
+import { ActivityLevel } from "./CalendarGrid";
+
+// Fake level
+const activities = [...new Array(364).keys()].map(() => {
+  const level = Math.floor(Math.random() * 4);
+  return level;
+}) as Array<ActivityLevel>;
 
 export default function App() {
   return (
@@ -7,7 +14,7 @@ export default function App() {
         React Aria Contribution Graph
       </h1>
       <h2 className="ml-12 font-bold text-3xl text-gray-700">Calendar</h2>
-      <Calendar />
+      <Calendar activities={activities} />
     </div>
   );
 }
