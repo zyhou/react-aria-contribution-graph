@@ -1,5 +1,5 @@
 import { CSSProperties, useRef } from "react";
-import { useCalendarCell, useDateFormatter } from "react-aria";
+import { useCalendarCell, useDateFormatter, useId } from "react-aria";
 import { CalendarDate } from "@internationalized/date";
 import { CalendarState } from "react-stately";
 import "./CalendarCell.css";
@@ -21,11 +21,13 @@ export function CalendarCell({
     dateStyle: "full",
     timeZone: state.timeZone,
   });
+  const tooltipId = useId();
 
   return (
     <li {...cellProps} className="flex items-center justify-center group">
       <div
         {...buttonProps}
+        aria-labelledby={tooltipId}
         ref={ref}
         style={
           {
@@ -36,7 +38,7 @@ export function CalendarCell({
         className={`relative cell level${level}`}
       >
         <div className="absolute bottom-0 flex-col items-center hidden mb-6 w-max group-hover:flex">
-          <span className="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg">
+          <span className="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg" id={tooltipId}>
             {activity} activities on{" "}
             {formatter.format(date.toDate(state.timeZone))}
           </span>
